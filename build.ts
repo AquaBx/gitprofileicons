@@ -5,6 +5,8 @@ const rewriter = new HTMLRewriter().on("*", {
 
     img.removeAttribute("fill");
     img.removeAttribute("style");
+    img.removeAttribute("color");
+    img.removeAttribute("stroke");
 
   },
 })
