@@ -1,38 +1,18 @@
-# sv
+# GitProfileIcons
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A lightweight tool designed to generate dynamic technology icon banners, perfect for enhancing your GitHub Profile (`README.md`) or personal documentation.
 
-## Creating a project
+## Usage
 
-If you're seeing this, you've probably already done this step. Congrats!
+Simply construct the URL using the `icons` query parameter, separating technology names with commas.
+You can also choose the theme between light and dark.
 
-```sh
-# create a new project in the current directory
-npx sv create
+**Example:**
 
-# create a new project in my-app
-npx sv create my-app
+```
+https://gitprofileicons.vercel.app/api/light?icons=windows11,apple,linux,svelte
 ```
 
-## Developing
+## Available Icons
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+All icons are sourced from **[devicon.dev](https://devicon.dev/)**. You can use the exact name of any icon available in their library.

@@ -23,7 +23,7 @@ for (const icon of iconslist) {
 
       // img.append('<rect xmlns="http://www.w3.org/2000/svg" width="256" height="256" rx="60" fill="${getTheme(theme)}"/>')
     },
-  });
+  })
 
   try {
 
@@ -36,6 +36,7 @@ for (const icon of iconslist) {
 
 
     let svg = String(fs.readFileSync((await import("devicon/icons/"+iconname+"/"+iconname+"-"+iconset+".svg")).default))
+    svg = svg.replace(/<\?xml.*?>/, '');
     icons[iconname] = rewriter.transform(svg)
 
   } catch (error) {
