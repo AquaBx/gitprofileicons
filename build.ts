@@ -1,10 +1,18 @@
 import iconslist from "devicon/devicon.json";
 import fs from "node:fs"
-const padding = 32
+const rewriter = new HTMLRewriter().on("*", {
+  element(img) {
 
+    img.removeAttribute("fill");
+    img.removeAttribute("style");
+
+  },
+})
 const icons : {[key:string]:string} = {};
 for (const icon of iconslist) {
   const iconname = icon.name
+
+
 
   try {
 
@@ -20,6 +28,7 @@ for (const icon of iconslist) {
     svg = svg.replace(/<\?xml.*?>/, '');
     svg = svg.replace(/<svg.*?>/, '');
     svg = svg.replace(/<\/svg.*?>/, '');
+    svg = rewriter.transform(svg)
     icons[iconname] = {
       svg:svg,
       color:icon.color

@@ -1,31 +1,38 @@
 import icons from "$lib/icons.json";
+import convert from 'color-convert';
 
 const ICONS_PER_LINE = 15;
 const ONE_ICON = 48;
 const SCALE = ONE_ICON / (300 - 44);
 
-const THEME : {[key:string]:string} = {
-  "dark":"oklch(27.9% 0.041 260.031)",
-  "light":"oklch(86.9% 0.022 252.894)"
+const THEME : {[key:string]:[string,string]} = {
+  "dark":["oklch(86.9% 0.022 252.894)","oklch(27.9% 0.041 260.031)"],
+  "light":["oklch(27.9% 0.041 260.031)","oklch(86.9% 0.022 252.894)"]
 } 
 
-function getThemeRect(key:string, color:string){
-  if (key === "icon"){
-    color = color.padEnd(7, "0")
-    if (["#ffffff","#FFFFFF"].includes(color)){
-      color = "#000000"
-    }
-    return color+"44"
-  }
-
+function getColor(key:string, color:string) {
   if (Object.keys(THEME).includes(key)) {
       return THEME[key]
+  }
+  if (key === "icon"){
+    let ncolor1 = convert.hex.hsl(color);
+    let ncolor2 = convert.hex.hsl(color);
+    
+    ncolor1[1] = 100;
+    ncolor1[2] = 100;
+    ncolor2[2] = 65; 
+    
+    return  [convert.hsl.keyword(ncolor1),convert.hsl.keyword(ncolor2)]
   }
   return THEME["dark"]
 }
 
+function getThemeRect(key:string, color:string){
+  return  getColor(key,color)[1]
+}
+
 function getThemeSvg(key:string, color:string){
-  return color
+  return getColor(key,color)[0]
 }
 
 function generateSvg(iconNames :string[], theme:string, perLine:number) {
