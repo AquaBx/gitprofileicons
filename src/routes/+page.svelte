@@ -1,8 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     let urlexemple = $state("");
+    let theme = $state("icon");
     onMount(() => {
-        urlexemple = `${window.location.href}api/light?icons=windows11,apple,linux,svelte`;
+        urlexemple = `${window.location.href}api/icon?icons=windows11,apple,linux,svelte`;
     });
 </script>
 
@@ -45,8 +46,14 @@
                     href="https://devicon.dev/">devicon.dev</a
                 > and have the same names.
             </p>
+            <select bind:value={theme}>
+                <option value="light">light</option>
+                <option value="dark">dark</option>
+                <option value="icon">icon</option>
+            </select>
+
             <img
-                src="/api/light"
+                src="/api/{theme}"
                 class="w-full h-auto rounded-lg"
                 alt="All the icons"
             />
